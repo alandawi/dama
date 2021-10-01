@@ -1,0 +1,18 @@
+<mjml>
+	<mj-head>
+		<mj-title>{% block title %}{% endblock %}</mj-title>
+		
+		<mj-attributes></mj-attributes>
+
+		<mj-style>
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		</mj-style>
+	</mj-head>
+
+	<mj-body {% block containerbackground %}{% endblock %}>
+		{% block content %}{% endblock %}
+	</mj-body>
+</mjml>

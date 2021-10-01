@@ -1,0 +1,6 @@
+<mj-section
+	background-url="./images/dama_cover.jpg"
+	background-size="cover"
+	background-repeat="no-repeat"
+	padding="100px">
+</mj-section>
