@@ -13,7 +13,10 @@
           <mj-navbar-link href="#" color="#FFFFFF">Item nº2</mj-navbar-link>
           <mj-navbar-link href="#" color="#FFFFFF">Item nº3</mj-navbar-link>
           <mj-navbar-link href="#" color="#FFFFFF">Item nº4</mj-navbar-link>
-          <mj-navbar-link href="#" color="#FFFFFF">Item nº5</mj-navbar-link>
+
+          {% if (version == "Special Example")%}
+              <mj-navbar-link href="#" color="#FFFFFF">Item nº5</mj-navbar-link>
+          {% endif %}
         </mj-navbar>
       </mj-column>
     </mj-section>
