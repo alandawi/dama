@@ -23,6 +23,7 @@
     "mjml": "^4.10.3",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "js-yaml": "^4.1.0",
     "browser-sync": "^2.27.5",
     "fs": "^0.0.1-security",
     "rimraf": "^3.0.2"
