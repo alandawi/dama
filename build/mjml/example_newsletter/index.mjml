@@ -48,10 +48,12 @@
     </mj-section>
 
     
+      
+      
       <mj-section background-color="#2f323b" padding-bottom="0px" padding-top="0">
         <mj-column>
           <mj-text align="center" color="#fff" font-size="18px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
-            <p>Lorem Ipsum is simply <span style="font-weight: bold;color: rgb(250, 135, 57);">dummy text</span></p>
+            <p>Lorem Ipsum is simply <span style="font-weight: bold;color: rgb(250, 135, 57);">dummy text</span> (123)</p>
           </mj-text>
         </mj-column>
       </mj-section>
