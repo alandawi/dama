@@ -2,7 +2,7 @@
 	<mj-head>
 		<mj-title>{% block title %}{% endblock %}</mj-title>
 		
-		<mj-attributes></mj-attributes>
+		<mj-attributes>{% block attributes %}{% endblock %}</mj-attributes>
 
 		<mj-style>
 			a {

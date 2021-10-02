@@ -25,8 +25,8 @@ const PATHS = {
 }
 
 function loadData() {
-  let yml = fs.readFileSync(PATHS.data, 'utf8')
-  return yaml.load(yml);
+  let file = fs.readFileSync(PATHS.data, 'utf8')
+  return yaml.load(file);
 }
 
 function clean(done) {
@@ -63,8 +63,6 @@ function buildMJML() {
 function buildImages(done) {
   return gulp.src(['./src/templates/**', '!./src/templates/**/*.mjml'])
     .pipe(gulp.dest(PATHS.build));
-
-  //done();
 }
 
 function setServer(done) {

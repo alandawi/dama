@@ -1,6 +1,6 @@
 <mjml>
 	<mj-head>
-		<mj-title>DAMA - Example full</mj-title>
+		<mj-title>DAMA - Example Newsletter</mj-title>
 		
 		<mj-attributes></mj-attributes>
 
@@ -22,27 +22,16 @@
 	padding="100px">
 </mj-section>
 
-	  <mj-section background-color="#ffffff">
+
+	  <mj-section background-color="#2f323b">
       <mj-column>
-        <mj-navbar base-url="#" hamburger="hamburger" ico-color="#3f0d62">
-          <mj-navbar-link href="#" color="#000000">Item nº1</mj-navbar-link>
-          <mj-navbar-link href="#" color="#000000">Item nº2</mj-navbar-link>
-          <mj-navbar-link href="#" color="#000000">Item nº3</mj-navbar-link>
-          <mj-navbar-link href="#" color="#000000">Item nº4</mj-navbar-link>
-          <mj-navbar-link href="#" color="#000000">Item nº5</mj-navbar-link>
+        <mj-navbar base-url="#" hamburger="hamburger" ico-color="#FFFFFF">
+          <mj-navbar-link href="#" color="#FFFFFF">Item nº1</mj-navbar-link>
+          <mj-navbar-link href="#" color="#FFFFFF">Item nº2</mj-navbar-link>
+          <mj-navbar-link href="#" color="#FFFFFF">Item nº3</mj-navbar-link>
+          <mj-navbar-link href="#" color="#FFFFFF">Item nº4</mj-navbar-link>
+          <mj-navbar-link href="#" color="#FFFFFF">Item nº5</mj-navbar-link>
         </mj-navbar>
-      </mj-column>
-    </mj-section>
-    
-    <mj-section background-color="#2f323b" padding-bottom="0px" padding-top="0">
-      <mj-column width="25%">
-        <mj-image src="http://191n.mj.am/img/191n/3s/x4t.png" alt="Box free shipping" align="center" border="none" width="42px" padding-left="0px" padding-right="0px" padding-bottom="10px" padding-top="10px"></mj-image>
-      </mj-column>
-      
-      <mj-column width="75%">
-        <mj-text align="left" color="#fff" font-size="18px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
-          <p>FREE SHIPPING ON ORDER <span style="font-weight: bold;color: rgb(250, 135, 57);">OVER 55&#x20AC;</span></p>
-        </mj-text>
       </mj-column>
     </mj-section>
 
@@ -50,25 +39,23 @@
       <mj-column width="200px">
         <mj-text align="left" color="#fff" font-size="40px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
           <p style="font-size: 17px;">TITLE</p>
-          <p style="font-size: 13px">Lorem ipsum dolor sit amet, consectetur adipiscing elit<br /></p>
+          <p style="font-size: 13px">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </mj-text>
-        <mj-button background-color="#fff" color="#3f0d62" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">CTA BUTTON</mj-button>
       </mj-column>
       <mj-column width="400px">
         <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" align="center" border="none" width="400px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
       </mj-column>
     </mj-section>
 
-    <mj-section background-color="#2f323b" padding-bottom="0px" padding-top="0">
-      <mj-column width="25%">
-        <mj-image src="http://191n.mj.am/img/191n/3s/x4t.png" alt="Box free shipping" align="center" border="none" width="42px" padding-left="0px" padding-right="0px" padding-bottom="10px" padding-top="10px"></mj-image>
-      </mj-column>
-      <mj-column width="75%">
-        <mj-text align="left" color="#fff" font-size="18px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
-          <p>FREE SHIPPING ON ORDER <span style="font-weight: bold;color: rgb(250, 135, 57);">OVER 55&#x20AC;</span></p>
-        </mj-text>
-      </mj-column>
-    </mj-section>
+    
+      <mj-section background-color="#2f323b" padding-bottom="0px" padding-top="0">
+        <mj-column>
+          <mj-text align="center" color="#fff" font-size="18px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
+            <p>Lorem Ipsum is simply <span style="font-weight: bold;color: rgb(250, 135, 57);">dummy text</span></p>
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    
 
     <mj-section background-color="#3f0d62" padding-bottom="0px" padding-top="0">
       <mj-column>
@@ -76,22 +63,22 @@
       </mj-column>
       <mj-column width="50%">
         <mj-text align="left" color="#fff" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
-          <p style="font-size: 19px;">ANDERSON SWEATER</p>
-          <p style="font-size: 36px;">75&#x20AC;</p>
-          <p>The Anderson Sweater features a floral all-over print with contrast colour.</p>
+          <p style="font-size: 19px;">Subtitle</p>
+          <p style="font-size: 36px;">GENERIC TITLE</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </mj-text>
-        <mj-button background-color="#fff" color="#3f0d62" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">CTA BUTTON</mj-button>
+        <mj-button background-color="#fff" color="#3f0d62" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
       </mj-column>
     </mj-section>
 
     <mj-section background-color="#2f323b" padding-bottom="0px" padding-top="0">
       <mj-column>
         <mj-text align="left" color="#fff" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
-          <p style="font-size: 19px;">ALDER TWO JONES JACKET</p>
-          <p style="font-size: 36px;">100&#x20AC;</p>
-          <p>Colour-block design, zip entry, oxford hood lining, side pockets &amp; TC lining.</p>
+          <p style="font-size: 19px;">Subtitle</p>
+          <p style="font-size: 36px;">GENERIC TITLE</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </mj-text>
-        <mj-button background-color="#3f0d62" color="#fff" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">CTA BUTTON</mj-button>
+        <mj-button background-color="#3f0d62" color="#fff" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
       </mj-column>
       <mj-column>
         <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" align="center" border="none" width="302px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
@@ -101,39 +88,38 @@
     <mj-section background-color="#3f0d62" padding-bottom="0px" padding-top="0">
       <mj-column>
         <mj-text align="center" color="#fff" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
-          <p style="font-size: 14px;">Lorem Ipsum is simply dummy text of the printing.</p>
+          <p style="font-size: 14px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
           <p style="font-size: 27px;">Your custom title</p>
         </mj-text>
       </mj-column>
     </mj-section>
 
     <mj-section background-color="#fff" padding-bottom="20px" padding-top="20px">
-      <mj-column>
-        <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
-        <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
-          <p>TOPAZ C3 SHOES</p>
-          <p style="color: rgb(250, 135, 57);">70&#x20AC;</p>
-        </mj-text>
-        <mj-button background-color="#3f0d62" color="#fff" font-size="13px" align="center" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">CTA BUTTON</mj-button>
-      </mj-column>
-
-      <mj-column>
-        <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
-        <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
-          <p>TOPAZ C3 SHOES</p>
-          <p style="color: rgb(250, 135, 57);">70&#x20AC;</p>
-        </mj-text>
-        <mj-button background-color="#3f0d62" color="#fff" font-size="13px" align="center" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">CTA BUTTON</mj-button>
-      </mj-column>
-
-      <mj-column>
-        <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" align="center" border="none" width="199px" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
-        <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
-          <p>CAMDEN BACKPACK</p>
-          <p style="color: rgb(250, 135, 57);">50&#x20AC;</p>
-        </mj-text>
-        <mj-button background-color="#3f0d62" color="#fff" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">CTA BUTTON</mj-button>
-      </mj-column>
+        
+          <mj-column>
+            <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
+            <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
+              <p>Generic Item 1</p>
+            </mj-text>
+            <mj-button href="https://www.google.com/" background-color="#3f0d62" color="#fff" font-size="13px" align="center" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
+          </mj-column>
+        
+          <mj-column>
+            <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
+            <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
+              <p>Generic Item 2</p>
+            </mj-text>
+            <mj-button href="https://www.google.com/" background-color="#3f0d62" color="#fff" font-size="13px" align="center" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
+          </mj-column>
+        
+          <mj-column>
+            <mj-image src="https://psicotecnicoelzahor.es/wp-content/uploads/2016/05/ef3-placeholder-image.jpg" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
+            <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
+              <p>Generic Item 3</p>
+            </mj-text>
+            <mj-button href="https://www.google.com/" background-color="#3f0d62" color="#fff" font-size="13px" align="center" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
+          </mj-column>
+        
     </mj-section>
 
     <mj-section background-color="#3f0d62" padding-bottom="20px" padding-top="0">
