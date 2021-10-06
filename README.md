@@ -67,12 +67,14 @@ Then you can check the output files inside the build folder.
 
 ## 📖 Documentation
 
-##### Nunjucks
+#### Nunjucks
 A rich and powerful templating language for JavaScript. - [More information](https://mozilla.github.io/nunjucks/)
 
-##### Yaml
+#### Yaml
 A human friendly data serialization language for all programming languages. - [More information](https://nodeca.github.io/js-yaml/)
 
-##### Mjml
+#### Mjml
 A markup language designed to reduce the pain of coding a responsive email. Its semantic syntax makes it easy and straightforward and its rich standard components library speeds up your development time and lightens your email codebase. MJML’s open-source engine generates high quality responsive HTML compliant with best practices. - [More information ](https://documentation.mjml.io/)
 
+
+## 💡 Some ideas working with D.A.M.A
