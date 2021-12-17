@@ -9,6 +9,7 @@ import mjmlGulp from 'gulp-mjml';
 import mjml from 'mjml';
 import nunjucks from 'gulp-nunjucks-render';
 import data from 'gulp-data';
+import imagemin from 'gulp-imagemin';
 
 const PATHS = {
   src: './src/{layouts,partials,templates}/**/*.mjml',
@@ -62,6 +63,17 @@ function buildMJML() {
 
 function buildImages(done) {
   return gulp.src(['./src/templates/**', '!./src/templates/**/*.mjml'])
+    .pipe(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.mozjpeg({quality: 80, progressive: true}),
+      imagemin.optipng({optimizationLevel: 5}),
+      imagemin.svgo({
+        plugins: [
+          {removeViewBox: false},
+          {cleanupIDs: false}
+        ]
+      })
+    ]))
     .pipe(gulp.dest(PATHS.build));
 }
 
