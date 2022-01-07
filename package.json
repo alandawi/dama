@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp",
-    "build": "gulp build"
+    "build": "gulp build",
+    "zip": "gulp zip"
   },
   "keywords": [
     "mjml",

@@ -25,6 +25,7 @@ const PATHS = {
   preview: "./src/preview/",
   images: "./src/templates/**/images/*",
   templates: "./src/templates/**/*.mjml",
+  zip: "./build/html/"
 };
 
 let templatesList = [];
@@ -121,7 +122,7 @@ function buildImages() {
 }
 
 function buildZip() {
-  return fs.readdir( "./build/html",
+  return fs.readdir(PATHS.build,
   (err, files) => {
     if (err) throw err;
 
@@ -164,12 +165,18 @@ gulp.task(
     buildTemplates,
     buildTemplates,
     buildMJML,
-    buildImages,
-    buildZip
+    buildImages
   )
 );
 
 gulp.task(
+  "zip",
+  gulp.series(
+    buildZip
+  )
+)
+
+gulp.task(
   "default",
-  gulp.series("build", setServer, gulp.parallel(watchFiles))
+  gulp.series("build", "zip", setServer, gulp.parallel(watchFiles))
 );
