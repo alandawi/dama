@@ -121,10 +121,21 @@ function buildImages() {
 }
 
 function buildZip() {
-  return gulp
-    .src(["build/html/**", "!./build/html/index.html"])
-    .pipe(zip("output.zip"))
-    .pipe(gulp.dest(PATHS.build));
+  return fs.readdir( "./build/html",
+  (err, files) => {
+    if (err) throw err;
+
+    files.forEach((file) => {
+      return createZip(file)
+    });
+
+    function createZip(dirName) {
+      return gulp
+        .src([`build/html/${dirName}/**`])
+        .pipe(zip(`${dirName}.zip`))
+        .pipe(gulp.dest(PATHS.build))
+    }
+  })
 }
 
 function setServer(done) {
