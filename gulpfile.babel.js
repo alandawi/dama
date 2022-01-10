@@ -171,12 +171,10 @@ gulp.task(
 
 gulp.task(
   "zip",
-  gulp.series(
-    buildZip
-  )
+  buildZip
 )
 
 gulp.task(
   "default",
-  gulp.series("build", "zip", setServer, gulp.parallel(watchFiles))
+  gulp.series("build", setServer, gulp.parallel(watchFiles))
 );
