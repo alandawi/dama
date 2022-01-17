@@ -12,7 +12,7 @@ import data from 'gulp-data';
 import imagemin from 'gulp-imagemin';
 
 const PATHS = {
-  src: './src/{layouts,partials,templates}/**/*.mjml',
+  src: './src/{layouts,partials,templates}/**/*',
   mjml: {
     src: './build/mjml/**/*.mjml',
     build: './build/mjml/',
@@ -21,17 +21,56 @@ const PATHS = {
   data: './src/data/data.yml',
   layouts: './src/layouts/',
   partials: './src/partials/',
+  preview: './src/preview/',
   images: './src/templates/**/images/*',
   templates: './src/templates/**/*.mjml'
 }
+
+let templatesList = [];
 
 function loadData() {
   let file = fs.readFileSync(PATHS.data, 'utf8')
   return yaml.load(file);
 }
 
+function getTemplates(done) {
+  return fs.readdir('./src/templates', { withFileTypes: true }, (err, files) => {
+      if (err) {
+          return console.log('Unable to scan directory: ' + err);
+      }
+
+      templatesList.length = 0;
+
+      files.forEach((file) => {
+          if (file.isDirectory()) {
+            templatesList.push({
+              title: file.name.split('_').join(' '),
+              dirName: file.name
+            })
+          }
+      });
+
+      done();
+  });
+}
+
 function clean(done) {
   rimraf('./build/*', done);
+}
+
+function buildPreview() {
+  return gulp.src(`${PATHS.preview}index.html`)
+    .pipe(nunjucks({
+      data: {
+        columns: 3, // TODO need to set this value into the preview
+        templates: templatesList
+      },
+      envOptions: {
+        noCache: true
+      },
+      inheritExtension: true
+    }))
+    .pipe(gulp.dest(PATHS.build));
 }
 
 function buildTemplates() {
@@ -51,17 +90,12 @@ function buildTemplates() {
 }
 
 function buildMJML() {
-  const options = {
-    beautify: true,
-    minify: false
-  };
-
   return gulp.src(PATHS.mjml.src)
-    .pipe(mjmlGulp(mjml, options))
+    .pipe(mjmlGulp(mjml, { beautify: true, minify: false }))
     .pipe(gulp.dest(PATHS.build));
 }
 
-function buildImages(done) {
+function buildImages() {
   return gulp.src(['./src/templates/**', '!./src/templates/**/*.mjml'])
     .pipe(imagemin([
       imagemin.gifsicle({interlaced: true}),
@@ -78,27 +112,24 @@ function buildImages(done) {
 }
 
 function setServer(done) {
-  const options = {
+  browser.init({
     server: {
       baseDir: PATHS.build,
-      directory: true
+      directory: false
     },
     port: '9000',
     notify: false
-  };
+  });
 
-  browser.init(options);
   done();
 }
 
 function watchFiles() {
-  gulp.watch(PATHS.data).on('all', gulp.series(buildTemplates, buildMJML, buildImages, browser.reload));
-  gulp.watch(PATHS.images).on('all', gulp.series(buildTemplates, buildMJML, buildImages, browser.reload));
-  gulp.watch(PATHS.src).on('all', gulp.series(buildTemplates, buildMJML, buildImages, browser.reload));
+  gulp.watch([PATHS.src, PATHS.data], gulp.series('build')); // browser.reload
 }
 
 gulp.task('build',
-  gulp.series(clean, buildTemplates, buildMJML, buildImages));
+  gulp.series(clean, getTemplates, buildPreview, buildTemplates, buildTemplates, buildMJML, buildImages));
 
 gulp.task('default',
-  gulp.series('build', gulp.parallel(setServer, watchFiles)));
+  gulp.series('build', setServer, gulp.parallel(watchFiles)));
