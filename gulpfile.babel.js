@@ -1,47 +1,47 @@
-"use strict";
+'use strict';
 
-import yaml from "js-yaml";
-import browser from "browser-sync";
-import rimraf from "rimraf";
-import fs from "fs";
-import gulp from "gulp";
-import mjmlGulp from "gulp-mjml";
-import mjml from "mjml";
-import nunjucks from "gulp-nunjucks-render";
-import data from "gulp-data";
-import imagemin from "gulp-imagemin";
-import zip from "gulp-zip";
+import yaml from 'js-yaml';
+import browser from 'browser-sync';
+import rimraf from 'rimraf';
+import fs from 'fs';
+import gulp from 'gulp';
+import mjmlGulp from 'gulp-mjml';
+import mjml from 'mjml';
+import nunjucks from 'gulp-nunjucks-render';
+import data from 'gulp-data';
+import imagemin from 'gulp-imagemin';
+import zip from 'gulp-zip';
 
 const PATHS = {
-  src: "./src/{layouts,partials,templates}/**/*",
+  src: './src/{layouts,partials,templates}/**/*',
   mjml: {
-    src: "./build/mjml/**/*.mjml",
-    build: "./build/mjml/",
+    src: './build/mjml/**/*.mjml',
+    build: './build/mjml/',
   },
-  build: "./build/html/",
-  data: "./src/data/data.yml",
-  layouts: "./src/layouts/",
-  partials: "./src/partials/",
-  preview: "./src/preview/",
-  images: "./src/templates/**/images/*",
-  templates: "./src/templates/**/*.mjml",
-  zip: "./build/html/"
+  build: './build/html/',
+  data: './src/data/data.yml',
+  layouts: './src/layouts/',
+  partials: './src/partials/',
+  preview: './src/preview/',
+  images: './src/templates/**/images/*',
+  templates: './src/templates/**/*.mjml',
+  zip: './build/html/',
 };
 
 let templatesList = [];
 
 function loadData() {
-  let file = fs.readFileSync(PATHS.data, "utf8");
+  let file = fs.readFileSync(PATHS.data, 'utf8');
   return yaml.load(file);
 }
 
 function getTemplates(done) {
   return fs.readdir(
-    "./src/templates",
+    './src/templates',
     { withFileTypes: true },
     (err, files) => {
       if (err) {
-        return console.log("Unable to scan directory: " + err);
+        return console.log('Unable to scan directory: ' + err);
       }
 
       templatesList.length = 0;
@@ -49,7 +49,7 @@ function getTemplates(done) {
       files.forEach((file) => {
         if (file.isDirectory()) {
           templatesList.push({
-            title: file.name.split("_").join(" "),
+            title: file.name.split('_').join(' '),
             dirName: file.name,
           });
         }
@@ -61,7 +61,7 @@ function getTemplates(done) {
 }
 
 function clean(done) {
-  rimraf("./build/*", done);
+  rimraf('./build/*', done);
 }
 
 function buildPreview() {
@@ -107,7 +107,7 @@ function buildMJML() {
 
 function buildImages() {
   return gulp
-    .src(["./src/templates/**", "!./src/templates/**/*.mjml"])
+    .src(['./src/templates/**', '!./src/templates/**/*.mjml'])
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
@@ -121,22 +121,23 @@ function buildImages() {
     .pipe(gulp.dest(PATHS.build));
 }
 
-function buildZip() {
-  return fs.readdir(PATHS.build,
-  (err, files) => {
+function buildZip(done) {
+  return fs.readdir(PATHS.build, (err, files) => {
     if (err) throw err;
 
     files.forEach((file) => {
-      return createZip(file)
+      return createZip(file);
     });
 
     function createZip(dirName) {
       return gulp
         .src([`build/html/${dirName}/**`])
         .pipe(zip(`${dirName}.zip`))
-        .pipe(gulp.dest(PATHS.build))
+        .pipe(gulp.dest(PATHS.build));
     }
-  })
+
+    done();
+  });
 }
 
 function setServer(done) {
@@ -145,7 +146,7 @@ function setServer(done) {
       baseDir: PATHS.build,
       directory: false,
     },
-    port: "9000",
+    port: '9000',
     notify: false,
   });
 
@@ -153,11 +154,11 @@ function setServer(done) {
 }
 
 function watchFiles() {
-  gulp.watch([PATHS.src, PATHS.data], gulp.series("build")); // browser.reload
+  gulp.watch([PATHS.src, PATHS.data], gulp.series('build')); // browser.reload
 }
 
 gulp.task(
-  "build",
+  'build',
   gulp.series(
     clean,
     getTemplates,
@@ -169,12 +170,9 @@ gulp.task(
   )
 );
 
-gulp.task(
-  "zip",
-  buildZip
-)
+gulp.task('zip', buildZip);
 
 gulp.task(
-  "default",
-  gulp.series("build", setServer, gulp.parallel(watchFiles))
+  'default',
+  gulp.series('build', setServer, gulp.parallel(watchFiles))
 );
