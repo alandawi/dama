@@ -1,14 +1,13 @@
 'use strict';
 
-import yaml from 'js-yaml';
 import browser from 'browser-sync';
 import rimraf from 'rimraf';
 import fs from 'fs';
+import glob from 'glob';
 import gulp from 'gulp';
 import mjmlGulp from 'gulp-mjml';
 import mjml from 'mjml';
 import nunjucks from 'gulp-nunjucks-render';
-import data from 'gulp-data';
 import imagemin from 'gulp-imagemin';
 import zip from 'gulp-zip';
 
@@ -25,14 +24,32 @@ const PATHS = {
   preview: './src/preview/',
   images: './src/templates/**/images/*',
   templates: './src/templates/**/*.mjml',
+  dataDamaShared: './src/data/dataDamaShared.json',
+  dataDamas: './src/templates/**/dataDama.json',
   zip: './build/html/',
 };
 
 let templatesList = [];
+let dataDama = {};
 
-function loadData() {
-  let file = fs.readFileSync(PATHS.data, 'utf8');
-  return yaml.load(file);
+function loadDataDama(done) {
+  // Shared
+  let shared = JSON.parse(fs.readFileSync(PATHS.dataDamaShared, 'utf8'));
+  dataDama[shared.settings.id] = shared.content;
+
+  // Units
+  glob(PATHS.dataDamas , function (err, res) {
+    if (err) {
+      console.error('Error loadDataDama: ', err);
+    } else {
+      res.forEach((file) => {
+        const dataDamaFile = JSON.parse(fs.readFileSync(file, 'utf8'));
+        dataDama[dataDamaFile.settings.id] = dataDamaFile.content;
+      });
+    }
+  });
+
+  done();
 }
 
 function getTemplates(done) {
@@ -70,8 +87,7 @@ function buildPreview() {
     .pipe(
       nunjucks({
         data: {
-          columns: 3, // TODO need to set this value into the preview
-          templates: templatesList,
+          templates: templatesList
         },
         envOptions: {
           noCache: true,
@@ -85,9 +101,9 @@ function buildPreview() {
 function buildTemplates() {
   return gulp
     .src(PATHS.templates)
-    .pipe(data(loadData))
     .pipe(
       nunjucks({
+        data: dataDama,
         path: [PATHS.layouts, PATHS.partials],
         envOptions: {
           noCache: true,
@@ -107,7 +123,7 @@ function buildMJML() {
 
 function buildImages() {
   return gulp
-    .src(['./src/templates/**', '!./src/templates/**/*.mjml'])
+    .src(['./src/templates/**', '!./src/templates/**/*.mjml', '!./src/templates/**/*.json'])
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
@@ -161,9 +177,9 @@ gulp.task(
   'build',
   gulp.series(
     clean,
+    loadDataDama,
     getTemplates,
     buildPreview,
-    buildTemplates,
     buildTemplates,
     buildMJML,
     buildImages
