@@ -5,11 +5,11 @@ D.A.M.A is a skeleton for the creation of e-mail templates.
 
 ## ✨ Features
 * Templating engine ([Nunjucks](https://mozilla.github.io/nunjucks/))
-* Data Serialization ([Yaml](https://nodeca.github.io/js-yaml/))
 * Easy responsive e-mails ([Mjml](https://mjml.io/))
 * Easy to install, deploy, and maintain
 * Customizable and scalable
 * Built-in BrowserSync server
+* Materialize Preview
 
 **NOTE:** This project is currently a work in progress.
 
@@ -70,11 +70,5 @@ Then you can check the output files inside the build folder.
 #### Nunjucks
 A rich and powerful templating language for JavaScript. - [More information](https://mozilla.github.io/nunjucks/)
 
-#### Yaml
-A human friendly data serialization language for all programming languages. - [More information](https://nodeca.github.io/js-yaml/)
-
 #### Mjml
 A markup language designed to reduce the pain of coding a responsive email. Its semantic syntax makes it easy and straightforward and its rich standard components library speeds up your development time and lightens your email codebase. MJML’s open-source engine generates high quality responsive HTML compliant with best practices. - [More information ](https://documentation.mjml.io/)
-
-
-## 💡 Some ideas working with D.A.M.A
