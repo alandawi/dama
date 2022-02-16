@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "id": "example_newsletter"
+  },
+  "content": {
+    "posts": [
+        {
+            "title": "Generic Item 1",
+            "link": "https://www.google.com/"
+        },
+        {
+            "title": "Generic Item 2",
+            "link": "https://www.google.com/"
+        },
+        {
+            "title": "Generic Item 3",
+            "link": "https://www.google.com/"
+        }
+    ],
+    "clickTag": "https://www.google.com",
+    "hasSpecialBlock": false
+  }
+}

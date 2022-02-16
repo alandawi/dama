@@ -13,8 +13,7 @@
           <mj-navbar-link href="#" color="#FFFFFF">Item nº2</mj-navbar-link>
           <mj-navbar-link href="#" color="#FFFFFF">Item nº3</mj-navbar-link>
           <mj-navbar-link href="#" color="#FFFFFF">Item nº4</mj-navbar-link>
-
-          {% if (version == "Special Example")%}
+          {% if (shared.version == "Special Example")%}
               <mj-navbar-link href="#" color="#FFFFFF">Item nº5</mj-navbar-link>
           {% endif %}
         </mj-navbar>
@@ -25,15 +24,15 @@
       <mj-column width="200px">
         <mj-text align="left" color="#fff" font-size="40px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
           <p style="font-size: 17px;">TITLE</p>
-          <p style="font-size: 13px">{{ textPlaceholder }}</p>
+          <p style="font-size: 13px">{{ shared.textPlaceholder }}</p>
         </mj-text>
       </mj-column>
       <mj-column width="400px">
-        <mj-image src="{{ imagePlaceholder }}" alt="image" align="center" border="none" width="400px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
+        <mj-image src="{{ shared.imagePlaceholder }}" alt="image" align="center" border="none" width="400px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
       </mj-column>
     </mj-section>
 
-    {% if hasSpecialBlock %}
+    {% if shared.hasSpecialBlock %}
       {% set numbers =  [1, 2, 3] %}
       
       <mj-section background-color="#2f323b" padding-bottom="0px" padding-top="0">
@@ -47,13 +46,13 @@
 
     <mj-section background-color="#3f0d62" padding-bottom="0px" padding-top="0">
       <mj-column>
-        <mj-image src="{{ imagePlaceholder }}" alt="image" width="301px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
+        <mj-image src="{{ shared.imagePlaceholder }}" alt="image" width="301px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
       </mj-column>
       <mj-column width="50%">
         <mj-text align="left" color="#fff" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
           <p style="font-size: 19px;">Subtitle</p>
           <p style="font-size: 36px;">GENERIC TITLE</p>
-          <p>{{ textPlaceholder }}</p>
+          <p>{{ shared.textPlaceholder }}</p>
         </mj-text>
         <mj-button background-color="#fff" color="#3f0d62" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
       </mj-column>
@@ -64,28 +63,28 @@
         <mj-text align="left" color="#fff" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
           <p style="font-size: 19px;">Subtitle</p>
           <p style="font-size: 36px;">GENERIC TITLE</p>
-          <p>{{ textPlaceholder }}</p>
+          <p>{{ shared.textPlaceholder }}</p>
         </mj-text>
         <mj-button background-color="#3f0d62" color="#fff" padding="15px 30px" border-radius="3px" href="#" padding-bottom="10px" padding-top="0">BUTTON</mj-button>
       </mj-column>
       <mj-column>
-        <mj-image src="{{ imagePlaceholder }}" alt="image" align="center" border="none" width="302px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
+        <mj-image src="{{ shared.imagePlaceholder }}" alt="image" align="center" border="none" width="302px" padding-left="0px" padding-right="0px" padding-bottom="0px" padding-top="0"></mj-image>
       </mj-column>
     </mj-section>
 
     <mj-section background-color="#3f0d62" padding-bottom="0px" padding-top="0">
       <mj-column>
         <mj-text align="center" color="#fff" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10px">
-          <p style="font-size: 14px;">{{ textPlaceholder }}</p>
+          <p style="font-size: 14px;">{{ shared.textPlaceholder }}</p>
           <p style="font-size: 27px;">Your custom title</p>
         </mj-text>
       </mj-column>
     </mj-section>
 
     <mj-section background-color="#fff" padding-bottom="20px" padding-top="20px">
-        {% for post in posts %}
+        {% for post in example_newsletter.posts %}
           <mj-column>
-            <mj-image src="{{ imagePlaceholder }}" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
+            <mj-image src="{{ shared.imagePlaceholder }}" alt="image" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"></mj-image>
             <mj-text align="center" color="#000" font-size="15px" font-weight="bold" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
               <p>{{ post.title }}</p>
             </mj-text>
