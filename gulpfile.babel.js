@@ -126,7 +126,7 @@ function buildImages() {
     .src(['./src/templates/**', '!./src/templates/**/*.mjml', '!./src/templates/**/*.json'])
     .pipe(
       imagemin([
-        imagemin.gifsicle({ interlaced: true }),
+        //imagemin.gifsicle({ interlaced: true }),
         imagemin.mozjpeg({ quality: 80, progressive: true }),
         imagemin.optipng({ optimizationLevel: 5 }),
         imagemin.svgo({
