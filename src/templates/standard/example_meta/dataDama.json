@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "id": "example_meta"
+  },
+  "content": {
+    "posts": [
+        {
+            "title": "Generic Item 1",
+            "link": "https://www.google.com/"
+        }
+    ],
+    "clickTag": "https://www.google.com",
+    "hasSpecialBlock": false
+  }
+}

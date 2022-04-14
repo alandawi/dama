@@ -2,43 +2,52 @@
 
 import browser from 'browser-sync';
 import rimraf from 'rimraf';
-import fs from 'fs';
+import fs, { watch } from 'fs';
 import glob from 'glob';
 import gulp from 'gulp';
 import mjmlGulp from 'gulp-mjml';
-import mjml from 'mjml';
+import mjml from 'mjml'; // TODO necessary?
 import nunjucks from 'gulp-nunjucks-render';
 import imagemin from 'gulp-imagemin';
 import zip from 'gulp-zip';
+import yargs from 'yargs';
 
+// TODO: Complete layout/partials for standard email
+// TODO: Clean dependencies
+// TODO: Clean console logs
+// TODO: Update readme file and add utils (nodemailer maybe?)
+// TODO: Modularize gulpfile
+
+const args = yargs.argv;
+const structureType = args.structureType;
+
+// Variables
 const PATHS = {
-  src: './src/{layouts,partials,templates}/**/*',
+  design: `./src/design/${structureType}/{layouts,partials}/*`,
   mjml: {
     src: './build/mjml/**/*.mjml',
     build: './build/mjml/',
   },
   build: './build/html/',
-  data: './src/data/data.yml',
-  layouts: './src/layouts/',
-  partials: './src/partials/',
+  layouts: `./src/design/${structureType}/layouts/`,
+  partials: `./src/design/${structureType}/partials/`,
   preview: './src/preview/',
   images: './src/templates/**/images/*',
-  templates: './src/templates/**/*.mjml',
+  templates: `./src/templates/${structureType}/**/*`,
   dataDamaShared: './src/data/dataDamaShared.json',
-  dataDamas: './src/templates/**/dataDama.json',
+  dataDama: './src/templates/**/dataDama.json',
   zip: './build/html/',
 };
 
 let templatesList = [];
 let dataDama = {};
 
+// Functions
 function loadDataDama(done) {
-  // Shared
   let shared = JSON.parse(fs.readFileSync(PATHS.dataDamaShared, 'utf8'));
   dataDama[shared.settings.id] = shared.content;
 
-  // Units
-  glob(PATHS.dataDamas , function (err, res) {
+  glob(PATHS.dataDama , function (err, res) {
     if (err) {
       console.error('Error loadDataDama: ', err);
     } else {
@@ -54,7 +63,7 @@ function loadDataDama(done) {
 
 function getTemplates(done) {
   return fs.readdir(
-    './src/templates',
+    `./src/templates/${structureType}`,
     { withFileTypes: true },
     (err, files) => {
       if (err) {
@@ -77,7 +86,7 @@ function getTemplates(done) {
   );
 }
 
-function clean(done) {
+function cleanBuild(done) {
   rimraf('./build/*', done);
 }
 
@@ -99,8 +108,16 @@ function buildPreview() {
 }
 
 function buildTemplates() {
+  let destinationFolder = PATHS.mjml.build;
+  let extType = 'mjml';
+
+  if (structureType == 'standard') {
+    destinationFolder = PATHS.build;
+    extType = 'html';
+  }
+
   return gulp
-    .src(PATHS.templates)
+    .src(`./src/templates/${structureType}/**/*.${extType}`)
     .pipe(
       nunjucks({
         data: dataDama,
@@ -111,7 +128,7 @@ function buildTemplates() {
         inheritExtension: true,
       })
     )
-    .pipe(gulp.dest(PATHS.mjml.build));
+    .pipe(gulp.dest(destinationFolder));
 }
 
 function buildMJML() {
@@ -123,10 +140,16 @@ function buildMJML() {
 
 function buildImages() {
   return gulp
-    .src(['./src/templates/**', '!./src/templates/**/*.mjml', '!./src/templates/**/*.json'])
+    .src([
+      `./src/templates/${structureType}/**/*.jpg`,
+      `./src/templates/${structureType}/**/*.jpeg`,
+      `./src/templates/${structureType}/**/*.png`,
+      '!./src/templates/**/*.html',
+      '!./src/templates/**/*.mjml',
+      '!./src/templates/**/*.json'
+    ])
     .pipe(
       imagemin([
-        //imagemin.gifsicle({ interlaced: true }),
         imagemin.mozjpeg({ quality: 80, progressive: true }),
         imagemin.optipng({ optimizationLevel: 5 }),
         imagemin.svgo({
@@ -170,25 +193,64 @@ function setServer(done) {
 }
 
 function watchFiles() {
-  gulp.watch([PATHS.src, PATHS.data], gulp.series('build')); // browser.reload
+  gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')); // browser.reload
 }
 
+// TASKS
+
+// Tasks
 gulp.task(
-  'build',
+  'core',
   gulp.series(
-    clean,
+    cleanBuild,
     loadDataDama,
     getTemplates,
     buildPreview,
     buildTemplates,
+  )
+);
+
+// Standard (without mjml)
+gulp.task(
+  'devStandard',
+  gulp.series(
+    'core',
+    buildImages,
+    setServer,
+    gulp.parallel(watchFiles) // 
+  )
+);
+
+// Responsive (with mjml)
+gulp.task(
+  'devResponsive',
+  gulp.series(
+    'core',
+    buildMJML,
+    buildImages,
+    setServer,
+    gulp.parallel(watchFiles)
+  )
+);
+
+// buildStandard
+gulp.task(
+  'buildStandard',
+  gulp.series(
+    'core',
+    buildImages
+  )
+);
+
+// buildResponsive
+gulp.task(
+  'buildResponsive',
+  gulp.series(
+    'core',
     buildMJML,
     buildImages
   )
 );
 
+// Zip
 gulp.task('zip', buildZip);
-
-gulp.task(
-  'default',
-  gulp.series('build', setServer, gulp.parallel(watchFiles))
-);
