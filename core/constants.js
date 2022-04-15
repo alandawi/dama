@@ -1,3 +1,5 @@
+'use strict';
+
 import yargs from 'yargs';
 
 const args = yargs.argv;
