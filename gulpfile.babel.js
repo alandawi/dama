@@ -10,34 +10,8 @@ import mjml from 'mjml'; // TODO necessary?
 import nunjucks from 'gulp-nunjucks-render';
 import imagemin from 'gulp-imagemin';
 import zip from 'gulp-zip';
-import yargs from 'yargs';
-
-// TODO: Complete layout/partials for standard email
-// TODO: Clean dependencies
-// TODO: Clean console logs
-// TODO: Update readme file and add utils (nodemailer maybe?)
-// TODO: Modularize gulpfile
-
-const args = yargs.argv;
-const structureType = args.structureType;
-
-// Variables
-const PATHS = {
-  design: `./src/design/${structureType}/{layouts,partials}/*`,
-  mjml: {
-    src: './build/mjml/**/*.mjml',
-    build: './build/mjml/',
-  },
-  build: './build/html/',
-  layouts: `./src/design/${structureType}/layouts/`,
-  partials: `./src/design/${structureType}/partials/`,
-  preview: './src/preview/',
-  images: './src/templates/**/images/*',
-  templates: `./src/templates/${structureType}/**/*`,
-  dataDamaShared: './src/data/dataDamaShared.json',
-  dataDama: './src/templates/**/dataDama.json',
-  zip: './build/html/',
-};
+import { PATHS, structureType } from './core/constants';
+import { functions } from './core/functions';
 
 let templatesList = [];
 let dataDama = {};
