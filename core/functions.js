@@ -165,5 +165,7 @@ export function setServer(done) {
 }
 
 export function watchFiles() {
-    gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')); // browser.reload
+    //gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')); // browser.reload
+    gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')).on("change", browser.reload);
 }
+

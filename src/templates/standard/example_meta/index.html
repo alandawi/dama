@@ -25,7 +25,6 @@
   <!--<![endif]-->
 
   <style type="text/css">
-
     body {
     margin: 0;
     padding: 0;
@@ -284,98 +283,7 @@
 
   <![endif]--> 
 
-  <!---------------------------------------------------------------SFMC CONFIG----------------------------------------------------------------------------------------------->
-
-  <!--%%[    
-
-    /*Subject Line*/
-
-    set @subjectline = ""
-
-    /*Tracking*/
-
-    set @utm_emailname = emailname_
-    set @utm_source = "email"
-    set @utm_medium = "crm"
-    set @utm_campaign = jobid
-    set @utm_term = "P0"
-    set @utm_content = "C1"
-    set @email = email
-    set @utm_funnel = "CONV"          
-
-    set @tracking = concat("?utm_source=", @utm_source,"&utm_medium=", @utm_medium,"&utm_campaign=", @utm_campaign,"&utm_term=",@utm_term,"&utm_content=", @utm_content, "&utm_emailname=",@utm_emailname,"&utm_funnel=",@utm_funnel)
-
-    set @tracking2 = concat("&utm_source=", @utm_source,"&utm_medium=", @utm_medium,"&utm_campaign=", @utm_campaign,"&utm_term=",@utm_term,"&utm_content=", @utm_content, "&utm_emailname=",@utm_emailname,"&utm_funnel=",@utm_funnel)
-
-    /*Module Links*/
-
-    VAR @firstname, @namelength
-
-    set @firstname = lookup('Contacts_DE','FirstName','Email',@email)
-
-    set @namelength = length(@firstname)
-
-    IF @namelength<3 OR @firstname == 'None' OR @firstname == 'null' THEN
-
-    set @subjectline = "don't miss these Black Friday deals"
-
-    ELSEIF @namelength>2 THEN
-
-    set @subjectline = concat(@firstname, ", don't miss these Black Friday deals")
-
-    ENDIF
-
-    set @heroModule6 = concat("https://portal.facebook.com",@tracking)
-    set @heroModule = concat("https://portal.facebook.com/products/",@tracking)
-    set @BodyCopy = concat("https://portal.facebook.com/products/",@tracking)
-    set @BodyCTA = concat("https://portal.facebook.com/products/",@tracking)
-    set @heroModule1 = concat("https://portal.facebook.com/",@tracking)
-    set @BodyCopy1 = concat("https://portal.facebook.com/",@tracking)
-    set @BodyCTA1 = concat("https://portal.facebook.com/",@tracking)
-    set @heroModule2 = concat("https://portal.facebook.com/products/portal/",@tracking)
-    set @BodyCopy2 = concat("https://portal.facebook.com/products/portal/",@tracking)
-    set @BodyCTA2 = concat("https://portal.facebook.com/products/portal/",@tracking)
-    set @heroModule3 = concat("https://portal.facebook.com/products/portal-tv/",@tracking)
-    set @BodyCopy3 = concat("https://portal.facebook.com/products/portal-tv/",@tracking)
-    set @BodyCTA3 = concat("https://portal.facebook.com/products/portal-tv/",@tracking)
-    set @heroModule4 = concat("https://portal.facebook.com/products/portal-plus/",@tracking)
-    set @BodyCopy4 = concat("https://portal.facebook.com/products/portal-plus/",@tracking)
-    set @BodyCTA4 = concat("https://portal.facebook.com/products/portal-plus/",@tracking)
-    set @heroModule5 = concat("https://portal.facebook.com/products/portal-go/",@tracking)
-    set @BodyCopy5 = concat("https://portal.facebook.com/products/portal-go/",@tracking)
-    set @BodyCTA5 = concat("https://portal.facebook.com/products/portal-go/",@tracking)
-    set @Demo_url = concat("https://portal.facebook.com/",@tracking)
-    set @module2_link_url = concat("https://portal.facebook.com/",@tracking)
-
-    /*Social Links*/
-
-    set @logo_url = concat("https://portal.facebook.com/",@tracking)
-    set @facebookicon_url = concat("https://www.facebook.com/FacebookPortal/",@tracking)
-    set @instagramicon_url = concat("https://www.instagram.com/facebookportal/",@tracking)
-    set @twittericon_url = concat("https://twitter.com/metaportal",@tracking)
-    set @youtubeicon_url = concat("https://www.youtube.com/c/FacebookPortal",@tracking)
-    /*Contact Links*/
-
-    set @contact_url = concat("https://portal.facebook.com/help/",@tracking)
-    set @privacy_url = concat("https://www.facebook.com/policy/",@tracking)
-    set @preferences_url = concat("https://portal.facebook.com/account/",@tracking)
-    set @footer_copy1_url = concat("https://portal.facebook.com/legal/referral-program/",@tracking)
-    set @footer_copy2_url = concat("https://portal.facebook.com/legal/usage/",@tracking)
-
-    /*Lookup Unsub*/
-
-    set @unsubscribe_url = Lookup("Contacts_DE","preference_uri", "Email", Email)                 
-    if empty(@unsubscribe_url) then
-    set @unsubscribe_url = "https://portal.facebook.com/unsubscribe"
-    endif
-
-    /*Legal Links*/
-
-    set @legal_portal_url = concat("https://portal.facebook.com/info",@tracking) 
-    set @footer_copy_url = concat("https://portal.facebook.com/",@tracking)
-    set @date = Format(Now(), "yyyy")
-            
-  ]%%-->
+  {% include "sfmc.njk" %}
 
 </head>
 
