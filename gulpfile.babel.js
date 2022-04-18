@@ -1,6 +1,5 @@
 'use strict';
 
-import gulp from 'gulp';
 import { 
   cleanBuild,
   loadDataDama,
@@ -13,6 +12,7 @@ import {
   buildMJML,
   buildZip 
 } from './core/functions';
+import gulp from 'gulp';
 
 // Core
 gulp.task(
@@ -33,7 +33,7 @@ gulp.task(
     'core',
     buildImages,
     setServer,
-    gulp.parallel(watchFiles) // 
+    gulp.parallel(watchFiles)
   )
 );
 
@@ -62,7 +62,7 @@ gulp.task(
   gulp.series(
     'core',
     buildMJML,
-    buildImages
+    buildImages // TODO NEED TO FIX THIS
   )
 );
 

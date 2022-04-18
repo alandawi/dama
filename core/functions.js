@@ -38,22 +38,22 @@ export function getTemplates(done) {
         `./src/templates/${structureType}`,
         { withFileTypes: true },
         (err, files) => {
-        if (err) {
-            return console.log('Unable to scan directory: ' + err);
-        }
-
-        templatesList.length = 0;
-
-        files.forEach((file) => {
-            if (file.isDirectory()) {
-            templatesList.push({
-                title: file.name.split('_').join(' '),
-                dirName: file.name,
-            });
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
             }
-        });
 
-        done();
+            templatesList.length = 0;
+
+            files.forEach((file) => {
+                if (file.isDirectory()) {
+                    templatesList.push({
+                        title: file.name.split('_').join(' '),
+                        dirName: file.name,
+                    });
+                }
+            });
+
+            done();
         }
     );
 }
@@ -81,23 +81,21 @@ export function buildPreview() {
 
 export function buildTemplates() {
     let destinationFolder = PATHS.mjml.build;
-    let extType = 'mjml';
 
     if (structureType == 'standard') {
         destinationFolder = PATHS.build;
-        extType = 'html';
     }
 
     return gulp
-        .src(`./src/templates/${structureType}/**/*.${extType}`)
+        .src(`./src/templates/${structureType}/**/*.njk`)
         .pipe(
         nunjucks({
             data: dataDama,
             path: [PATHS.layouts, PATHS.partials],
             envOptions: {
-            noCache: true,
+                noCache: true,
             },
-            inheritExtension: true,
+            inheritExtension: false,
         })
         )
         .pipe(gulp.dest(destinationFolder));
@@ -116,9 +114,10 @@ export function buildImages() {
         `./src/templates/${structureType}/**/*.jpg`,
         `./src/templates/${structureType}/**/*.jpeg`,
         `./src/templates/${structureType}/**/*.png`,
-        '!./src/templates/**/*.html',
-        '!./src/templates/**/*.mjml',
-        '!./src/templates/**/*.json'
+        `!./src/templates/**/*.njk`,
+        `!./src/templates/**/*.html`,
+        `!./src/templates/**/*.mjml`,
+        `!./src/templates/**/*.json`
         ])
         .pipe(
         imagemin([
@@ -166,6 +165,6 @@ export function setServer(done) {
 
 export function watchFiles() {
     //gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')); // browser.reload
-    gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')).on("change", browser.reload);
+    gulp.watch([PATHS.layouts, PATHS.partials, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')).on("change", browser.reload);
 }
 
