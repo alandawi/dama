@@ -10,7 +10,9 @@ import mjml from 'mjml';
 import nunjucks from 'gulp-nunjucks-render';
 import imagemin from 'gulp-imagemin';
 import zip from 'gulp-zip';
-import { PATHS, structureType } from './constants';
+import nodemailer from 'nodemailer';
+import { PATHS, structureType, } from './constants';
+import { mailtrap } from './mailtrap';
 
 let templatesList = [];
 let dataDama = {};
@@ -164,7 +166,36 @@ export function setServer(done) {
 }
 
 export function watchFiles() {
-    //gulp.watch([PATHS.design, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')); // browser.reload
     gulp.watch([PATHS.layouts, PATHS.partials, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')).on("change", browser.reload);
 }
 
+export function sendEmail(done) {
+    var transport = nodemailer.createTransport(mailtrap);
+    
+    const folder = process.argv.slice(3)[1];
+
+    var mailOptions = {
+        from: '"D.A.M.A Example" <from@example.com>',
+        to: 'userTest@myexampleemail.com',
+        subject: 'D.A.M.A Example',
+        text: 'Hey there, it’s our first message sent with Nodemailer ;) ',
+        html: fs.readFileSync(`./build/html/${folder}/index.html`, 'utf8')
+    };
+
+    transport.verify(function(error, success) {
+        if (error) {
+            console.log(error);
+            done();
+        } else {
+            console.log('Server is ready to take our messages');
+
+            transport.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log('Message sent: %s', info.messageId);
+                    done();
+            });
+        }
+    });
+}

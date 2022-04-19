@@ -10,7 +10,8 @@ import {
   setServer,
   watchFiles,
   buildMJML,
-  buildZip 
+  buildZip,
+  sendEmail
 } from './core/functions';
 import gulp from 'gulp';
 
@@ -68,3 +69,6 @@ gulp.task(
 
 // Zip
 gulp.task('zip', buildZip);
+
+// SendEmail
+gulp.task('sendEmail', sendEmail);
