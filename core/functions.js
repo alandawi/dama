@@ -93,7 +93,7 @@ export function buildTemplates() {
         .pipe(
         nunjucks({
             data: dataDama,
-            path: [PATHS.layouts, PATHS.partials],
+            path: [PATHS.layouts, PATHS.partials, PATHS.utils],
             envOptions: {
                 noCache: true,
             },
@@ -166,7 +166,7 @@ export function setServer(done) {
 }
 
 export function watchFiles() {
-    gulp.watch([PATHS.layouts, PATHS.partials, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')).on("change", browser.reload);
+    gulp.watch([PATHS.layouts, PATHS.partials, PATHS.utils, PATHS.templates, PATHS.dataDamaShared], gulp.series((structureType == 'standard') ? 'devStandard' : 'devResponsive')).on("change", browser.reload);
 }
 
 export function sendEmail(done) {
@@ -176,8 +176,8 @@ export function sendEmail(done) {
 
     var mailOptions = {
         from: '"D.A.M.A Example" <from@example.com>',
-        to: 'userTest@myexampleemail.com',
-        subject: 'D.A.M.A Example',
+        to: 'userTest@example.com',
+        subject: `Preview for ${folder}`,
         text: 'Hey there, it’s our first message sent with Nodemailer ;) ',
         html: fs.readFileSync(`./build/html/${folder}/index.html`, 'utf8')
     };

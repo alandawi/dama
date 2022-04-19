@@ -13,6 +13,7 @@ export const PATHS = {
         build: './build/mjml/',
     },
     build: './build/html/',
+    utils: `./src/utils/`,
     layouts: `./src/layouts/`,
     partials: `./src/partials/`,
     preview: './src/preview/',

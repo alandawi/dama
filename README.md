@@ -2,16 +2,16 @@
 
 D.A.M.A is a skeleton for the creation of e-mail templates.
 
+**NOTE:** This project is currently a work in progress.
+
 
 ## ✨ Features
 * Templating engine ([Nunjucks](https://mozilla.github.io/nunjucks/))
 * Easy responsive e-mails ([Mjml](https://mjml.io/))
 * Easy to install, deploy, and maintain
-* Customizable and scalable
+* Integration with MailTrap
 * Built-in BrowserSync server
 * Materialize Preview
-
-**NOTE:** This project is currently a work in progress.
 
 ## 💻 Installation
 
@@ -30,31 +30,39 @@ Then open the folder in your command line and install the dependencies:
 npm install
 ```
 
-## Available commands
+## 	⌨️ Available commands
+
+Standard campaign:
 
 ```bash
 npm run dev:standard
 ```
 
 ```bash
-npm run dev:responsive
+npm run build:standard
 ```
 
+Responsive campaign (with MJML):
+
 ```bash
-npm run build:standard
+npm run dev:responsive
 ```
 
 ```bash
 npm run build:responsive
 ```
 
-```bash
-npm run sendEmail
-```
+Extra:
 
 ```bash
 npm run zip
 ```
+
+
+```bash
+npm run sendEmail name_of_the_newsletter
+```
+
 
 Then you can check the output files inside the build folder.
 
@@ -68,6 +76,7 @@ Then you can check the output files inside the build folder.
 * **/src/data** - Contains the main dataDama file.
 * **/src/layouts** - Contains the .njk files related to the layouts (for example you can use one layout for multiple newsletters).
 * **/src/partials** - Contains the .njk files related to the partials (like the header, footer, and more).
+* **/src/utils** - Contains the .njk files related to the utils (like macros and more).
 * **/src/templates** - Contains two folders (standard and responsive) with the newsletters (one folder by newsletter).
 
 ### Files

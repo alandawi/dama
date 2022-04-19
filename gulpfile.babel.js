@@ -63,7 +63,7 @@ gulp.task(
   gulp.series(
     'core',
     buildMJML,
-    buildImages // TODO NEED TO FIX THIS
+    buildImages
   )
 );
 
