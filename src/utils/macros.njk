@@ -1,0 +1,15 @@
+{% macro cssFontSize(numbers) %}
+    {% for number in numbers %}
+        .fs-{{ number }} {
+            font-size: {{ number }}px !important;
+        }
+    {% endfor %}
+{% endmacro %}
+
+{% macro cssFontWeight(numbers) %}
+    {% for number in numbers %}
+        .fw-{{ number }} {
+            font-weight: {{ number }}px !important;
+        }
+    {% endfor %}
+{% endmacro %}
