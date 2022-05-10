@@ -13,6 +13,7 @@ import {
   buildZip,
   sendEmail
 } from './core/functions';
+import { structureType } from './core/constants';
 import gulp from 'gulp';
 
 // Core
@@ -33,7 +34,7 @@ gulp.task(
   gulp.series(
     'core',
     buildImages,
-    setServer,
+    //setServer,
     gulp.parallel(watchFiles)
   )
 );
@@ -53,7 +54,7 @@ gulp.task(
     'core',
     buildMJML,
     buildImages,
-    setServer,
+    //setServer,
     gulp.parallel(watchFiles)
   )
 );
@@ -72,3 +73,6 @@ gulp.task('zip', buildZip);
 
 // SendEmail
 gulp.task('sendEmail', sendEmail);
+
+// Init server
+gulp.task('initServer', gulp.series(setServer, (structureType == 'standard') ? 'devStandard' : 'devResponsive'))

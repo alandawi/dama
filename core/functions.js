@@ -11,7 +11,7 @@ import nunjucks from 'gulp-nunjucks-render';
 import imagemin from 'gulp-imagemin';
 import zip from 'gulp-zip';
 import nodemailer from 'nodemailer';
-import { PATHS, structureType, } from './constants';
+import { PATHS, structureType } from './constants';
 import { mailtrap } from './mailtrap';
 
 let templatesList = [];

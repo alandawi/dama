@@ -4,8 +4,8 @@
   "description": "Display Advertising Mailing Assistant (a.k.a DAMA) is skeleton for the creation of e-mail templates.",
   "main": "gulpfile.js",
   "scripts": {
-    "dev:standard": "gulp devStandard --structureType standard",
-    "dev:responsive": "gulp devResponsive --structureType responsive",
+    "dev:standard": "gulp initServer --structureType standard",
+    "dev:responsive": "gulp initServer --structureType responsive",
     "build:standard": "gulp buildStandard --structureType standard",
     "build:responsive": "gulp buildResponsive --structureType responsive",
     "sendEmail": "gulp sendEmail --folder",
