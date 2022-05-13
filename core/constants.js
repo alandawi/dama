@@ -5,6 +5,7 @@ import yargs from 'yargs';
 const args = yargs.argv;
 
 export const structureType = args.structureType;
+export const env = args.env;
 export const folder = args.folder;
 
 export const PATHS = {

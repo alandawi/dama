@@ -10,8 +10,9 @@ import mjml from 'mjml';
 import nunjucks from 'gulp-nunjucks-render';
 import imagemin from 'gulp-imagemin';
 import zip from 'gulp-zip';
+import gulpif from 'gulp-if';
 import nodemailer from 'nodemailer';
-import { PATHS, structureType } from './constants';
+import { PATHS, structureType, env } from './constants';
 import { mailtrap } from './mailtrap';
 
 let templatesList = [];
@@ -121,15 +122,15 @@ export function buildImages() {
         `!./src/templates/**/*.mjml`,
         `!./src/templates/**/*.json`
         ])
-        .pipe(
-        imagemin([
-            imagemin.mozjpeg({ quality: 80, progressive: true }),
-            imagemin.optipng({ optimizationLevel: 5 }),
-            imagemin.svgo({
-            plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
-            }),
-        ])
-        )
+        .pipe(gulpif(env == 'PROD',
+            imagemin([
+                imagemin.mozjpeg({ quality: 80, progressive: true }),
+                imagemin.optipng({ optimizationLevel: 5 }),
+                imagemin.svgo({
+                plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
+                }),
+            ])
+        ))
         .pipe(gulp.dest(PATHS.build));
 }
 
