@@ -117,6 +117,7 @@ export function buildImages() {
         `./src/templates/${structureType}/**/*.jpg`,
         `./src/templates/${structureType}/**/*.jpeg`,
         `./src/templates/${structureType}/**/*.png`,
+        `./src/templates/${structureType}/**/*.gif`,
         `!./src/templates/**/*.njk`,
         `!./src/templates/**/*.html`,
         `!./src/templates/**/*.mjml`,
