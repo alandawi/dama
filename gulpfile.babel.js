@@ -43,7 +43,8 @@ gulp.task(
   'buildStandard',
   gulp.series(
     'core',
-    buildImages
+    buildImages,
+    buildZip
   )
 );
 
@@ -64,7 +65,8 @@ gulp.task(
   gulp.series(
     'core',
     buildMJML,
-    buildImages
+    buildImages,
+    buildZip
   )
 );
 
