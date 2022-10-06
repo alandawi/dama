@@ -1,6 +1,6 @@
 {
   "name": "dama",
-  "version": "2.2.1",
+  "version": "2.3.1",
   "description": "Display Advertising Mailing Assistant (a.k.a DAMA) is skeleton for the creation of e-mail templates.",
   "main": "gulpfile.js",
   "scripts": {
