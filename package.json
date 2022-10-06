@@ -28,6 +28,7 @@
     "gulp-if": "^3.0.0",
     "gulp-mjml": "^4.0.2",
     "gulp-nunjucks-render": "^2.2.3",
+    "http-server": "^14.1.1",
     "mjml": "^4.10.3",
     "nodemailer": "^6.7.3",
     "rimraf": "^3.0.2",
